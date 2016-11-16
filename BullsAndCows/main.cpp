@@ -1,61 +1,86 @@
-#include <iostream>;
-#include <string>;
-
-using namespace std;
-
-void PlayGame();
-void PrintIntro();
-string GetGuess();
-string GetUserInput();
-void PrintGuess(string Guess);
+#include "main.h";
+#include "FBullCowGame.h";
 
 int main()
 {
-	PrintIntro();
-	PlayGame();
+	do
+	{
+		system("cls");
+		system("color 0A");
+		PrintIntro();
+		PlayGame();
+	}
+	while(AskToPlayAgain());
+
+	PrintOutro();
+
 	return 0;
 }
 
-void PlayGame()
-{
-	string Guess = "";
-	constexpr int NUMBER_OF_TURNS = 5;
-
-	for (int i = 1; i <= NUMBER_OF_TURNS; i++)
-	{
-		Guess = GetGuess();
-		PrintGuess(Guess);
-	}
-}
 
 void PrintIntro()
 {
 	constexpr int WORD_LENGTH = 9;
 
-	cout << "Welcome to Bulls and Cows, a fun word game!" << endl;
-	cout << "Can you guess the " << WORD_LENGTH << " letter isogram I am thinking of?" << endl;
-	cout << endl;
+	std::cout << "Welcome to Bulls and Cows, a fun word game!" << std::endl;
+	std::cout << "Can you guess the " << WORD_LENGTH << " letter isogram I am thinking of?" << std::endl;
+	std::cout << std::endl;
 
 	return;
 }
 
-string GetGuess()
+void PlayGame()
 {
-	cout << "Enter your guess: ";
-	string Guess = GetUserInput();
+	FBullCowGame BCGame;
+	int MaxTries = BCGame.GetMaxTries();
+
+	std::cout << MaxTries << std::endl;
+
+	for (int i = 1; i <= MaxTries; i++)
+	{
+		std::string Guess = GetGuess();
+		PrintGuess(Guess);
+	}
+}
+
+std::string GetGuess()
+{
+	std::cout << "Enter your guess: ";
+	std::string Guess = GetUserInput();
 	return Guess;
 }
 
-string GetUserInput()
+std::string GetUserInput()
 {
-	string Guess = "";
-	getline(cin, Guess);
+	std::string Guess = "";
+	std::getline(std::cin, Guess);
 	return Guess;
 }
 
-void PrintGuess(string Guess)
+void PrintGuess(std::string Guess)
 {
-	cout << "Your guess was: " << Guess << endl;
-	cout << endl;
+	std::cout << "Your guess was: " << Guess << std::endl;
+	std::cout << std::endl;
 	return;
+}
+
+bool AskToPlayAgain()
+{
+	std::cout << "Do you want to play again? (y/n) ";
+	std::string response = GetUserInput();
+
+	bool WantsToPlayAgain = false;
+
+	if (response[0] == 'y' || response[0] == 'Y')
+	{
+		WantsToPlayAgain = true;
+	}
+
+	return WantsToPlayAgain;
+}
+
+void PrintOutro()
+{
+	std::cout << "Bye bye!" << std::endl;
+	//std::cin.ignore();
 }
