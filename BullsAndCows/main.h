@@ -1,13 +1,17 @@
 #pragma once
 
-#include <iostream>
-#include <string>
+#include <iostream>;
+#include <string>;
+#include "FBullCowGame.h";
 
+
+using FText = std::string;
+using int32 = int;
 
 void PrintIntro();
 void PlayGame();
-std::string GetGuess();
-std::string GetUserInput();
-void PrintGuess(std::string Guess);
+FText GetValidGuess();
+FText GetUserInput();
+void PrintBullCowCount(FBullCowCount);
+void PrintGameSummary();
 bool AskToPlayAgain();
-void PrintOutro();
