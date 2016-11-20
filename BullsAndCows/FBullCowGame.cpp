@@ -28,17 +28,17 @@ bool FBullCowGame::IsGameWon() const
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
-	if (HasRepeatingNumbers(Guess))
+	if (!DoesLengthEqualsToHiddenWordLength(Guess))
 	{
-		return EGuessStatus::Not_Isogram;
+		return EGuessStatus::Wrong_Length;
 	}
 	if (!AreAllLettersLowercase(Guess))
 	{
 		return EGuessStatus::Not_Lowercase;
 	}
-	if (!DoesLengthEqualsToHiddenWordLength(Guess))//(Guess.length() != GetHiddenWordLength())
+	if (HasRepeatingLetters(Guess))
 	{
-		return EGuessStatus::Wrong_Length;
+		return EGuessStatus::Not_Isogram;
 	}
 
 	return EGuessStatus::OK;
@@ -92,8 +92,23 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 }
 
 //private methods
-bool FBullCowGame::HasRepeatingNumbers(FString Word) const
+bool FBullCowGame::HasRepeatingLetters(FString Word) const
 {
+	TMap<char, bool> LetterSeen;
+	int32 WordLength = Word.length();
+	
+	for (char Letter : Word)
+	{
+		if (LetterSeen[Letter])
+		{
+			return true;
+		}
+		else
+		{
+			LetterSeen[Letter] = true;
+		}
+	}
+
 	return false;
 }
 

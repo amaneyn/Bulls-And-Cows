@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <map>
+#define TMap std::map
 
 using FString = std::string;
 using int32 = int;
@@ -40,7 +42,7 @@ private:
 	FString MyHiddenWord;
 	bool bGameIsWon;
 
-	bool HasRepeatingNumbers(FString) const;
+	bool HasRepeatingLetters(FString) const;
 	bool AreAllLettersLowercase(FString) const;
 	bool DoesLengthEqualsToHiddenWordLength(FString) const;
 
