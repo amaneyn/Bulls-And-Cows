@@ -95,7 +95,6 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 bool FBullCowGame::HasRepeatingLetters(FString Word) const
 {
 	TMap<char, bool> LetterSeen;
-	int32 WordLength = Word.length();
 	
 	for (char Letter : Word)
 	{
@@ -114,14 +113,14 @@ bool FBullCowGame::HasRepeatingLetters(FString Word) const
 
 bool FBullCowGame::AreAllLettersLowercase(FString Word) const
 {
-	int32 WordLength = Word.length();
-	for (int32 i = 0; i < WordLength; i++)
+	for (char Letter : Word)
 	{
-		if (!islower(Word[i]))
+		if (!islower(Letter))
 		{
 			return false;
 		}
 	}
+
 	return true;
 }
 
