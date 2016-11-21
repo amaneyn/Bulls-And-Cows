@@ -98,6 +98,7 @@ bool FBullCowGame::HasRepeatingLetters(FString Word) const
 	
 	for (char Letter : Word)
 	{
+		Letter = tolower(Letter);
 		if (LetterSeen[Letter])
 		{
 			return true;
