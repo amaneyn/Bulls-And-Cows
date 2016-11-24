@@ -1,3 +1,4 @@
+#pragma once;
 #include "main.h";
 
 FBullCowGame BCGame;
@@ -17,7 +18,6 @@ int main()
 
 	return 0;
 }
-
 
 void PrintIntro()
 {

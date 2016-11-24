@@ -1,6 +1,7 @@
-#pragma once
-#include <string>
-#include <map>
+#pragma once;
+#include <string>;
+#include <map>;
+
 #define TMap std::map
 
 using FString = std::string;
@@ -38,7 +39,6 @@ public:
 
 private:
 	int32 MyCurrentTry;
-	int32 MyMaxTries;
 	FString MyHiddenWord;
 	bool bGameIsWon;
 
