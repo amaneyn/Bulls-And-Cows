@@ -6,6 +6,7 @@ int main()
 {
 	do
 	{
+		system("Color 07");
 		system("cls");
 		PrintIntro();
 		PlayGame();
@@ -20,7 +21,15 @@ int main()
 
 void PrintIntro()
 {
-	std::cout << "Welcome to Bulls and Cows, a fun word game!" << std::endl;
+	std::cout << std::endl << "Welcome to Bulls and Cows, a fun word game!" << std::endl;
+	std::cout << std::endl;
+	std::cout << "          }   {         ___ " << std::endl;
+	std::cout << "          (o o)        (o o) " << std::endl;
+	std::cout << "   /-------\\ /          \\ /-------\\ " << std::endl;
+	std::cout << "  / | BULL |O            O| COW  | \\ " << std::endl;
+	std::cout << " *  |-,--- |              |------|  * " << std::endl;
+	std::cout << "    ^      ^              ^      ^ " << std::endl;
+	std::cout << std::endl;
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I am thinking of?" << std::endl;
 	std::cout << std::endl;
 
@@ -51,19 +60,19 @@ FText GetValidGuess()
 
 	do
 	{
-		std::cout << "Try " << BCGame.GetCurrentTry() << ". Enter your guess: ";
+		std::cout << "Try " << BCGame.GetCurrentTry() << " of " << BCGame.GetMaxTries() << ". Enter your guess: ";
 		Guess = GetUserInput();
 		GuessStatus = BCGame.CheckGuessValidity(Guess);
 		switch (GuessStatus)
 		{
 			case EGuessStatus::Wrong_Length:
-				std::cout << "Guess length must be " << BCGame.GetHiddenWordLength() << "." << std::endl << std::endl;
+				std::cout << "Guess length must be " << BCGame.GetHiddenWordLength() << ".\n\n";
 				break;
 			case EGuessStatus::Not_Isogram:
-				std::cout << "Guess mustn't have repeating letters." << std::endl << std::endl;
+				std::cout << "Guess mustn't have repeating letters.\n\n";
 				break;
 			case EGuessStatus::Not_Lowercase:
-				std::cout << "All letters of the guess must be lowercase." << std::endl << std::endl;
+				std::cout << "All letters of the guess must be lowercase.\n\n";
 				break;
 			default:
 				break;
